@@ -6,7 +6,7 @@
 /*   By: kadjane <kadjane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 12:58:59 by kadjane           #+#    #+#             */
-/*   Updated: 2022/08/15 21:32:31 by kadjane          ###   ########.fr       */
+/*   Updated: 2022/08/16 20:20:31 by kadjane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,31 @@
 
 void	print_msg(int signo)
 {
-	static int	i;
-	static char	res;
+	static int	i=-1;
+	static char	res=0;
+	char		bit;
+	static char *msg = NULL;
 	
-	i = -1;
-	while (++i <= 8)
-	{
-		if (signo == SIGUSR2 && i < 8)
+	i++;	
+	if (signo == SIGUSR2)
 		res |= 1 << i;
-		if (i == 8)
+	if (i == 7)
+	{
+		ft_strcat(&msg,res);
+		i = -1;
+		if (!res)
 		{
-			write(1,&res,1);
-			i = 0;
-			break ;
+			printf("%c", res);
+			ft_putstr(msg);
+			free(msg);
+			msg = NULL;
 		}
-	
+		res = 0;
 	}
-	
 }
 
-void	server()
-{
+int main()
+{	
 	pid_t	pid;
 
 	pid = getpid();
@@ -42,11 +46,6 @@ void	server()
 
 	signal(SIGUSR1,print_msg);
 	signal(SIGUSR2,print_msg);
-	
+		usleep(500);
 	while(1);
-}
-
-int main()
-{	
-	server();
 }

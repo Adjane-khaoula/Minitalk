@@ -6,7 +6,7 @@
 /*   By: kadjane <kadjane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:21:00 by kadjane           #+#    #+#             */
-/*   Updated: 2022/08/15 11:21:16 by kadjane          ###   ########.fr       */
+/*   Updated: 2022/08/16 17:52:03 by kadjane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ void	client(pid_t pid);
 void	server();
 int	ft_atoi(const char	*str);
 char	*ft_strdup(char *src);
+char	*ft_strcat(char **dest,char src);
+int	ft_strlen(const char *str);
 
 #endif 
