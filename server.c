@@ -6,29 +6,33 @@
 /*   By: kadjane <kadjane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 12:58:59 by kadjane           #+#    #+#             */
-/*   Updated: 2022/08/18 18:42:44 by kadjane          ###   ########.fr       */
+/*   Updated: 2022/08/18 23:57:20 by kadjane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 
-void	print_msg_help(char *msg)
+void	print_msg_help(char **msg)
 {
+	static int	j;
 	static int	pid_client;
 
 	if (pid_client == 0)
 	{
-		pid_client = ft_atoi(msg);
-		free (msg);
-		msg = NULL;
+		pid_client = ft_atoi(*msg);
+		free (*msg);
+		*msg = NULL;
+		j++;
 	}
-	else
+	else if(pid_client != 0)
 	{
-		ft_putstr(msg);
+		j = 0;
+		ft_putstr(*msg);
+		usleep(70);
 		kill(pid_client,SIGUSR1);
-		free(msg);
-		msg = NULL;
+		free(*msg);
 		pid_client = 0;
+		*msg = NULL;
 	}
 }
 
@@ -45,11 +49,12 @@ void	print_msg(int signo)
 	if (i == 7)
 	{
 		ft_strcat(&msg,res);
+		if (!res)
+			print_msg_help(&msg);
 		i = -1;
 		res = 0;
-		if (!res)
-			print_msg_help(msg);
 	}
+	
 }
 
 int main()

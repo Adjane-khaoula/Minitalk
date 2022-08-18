@@ -6,7 +6,7 @@
 /*   By: kadjane <kadjane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 12:59:16 by kadjane           #+#    #+#             */
-/*   Updated: 2022/08/18 18:08:08 by kadjane          ###   ########.fr       */
+/*   Updated: 2022/08/18 23:57:00 by kadjane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,13 @@ int main(int ac,char **av)
 	pid_t	pid;
 	char 	*id_str;
 
+	signal(SIGUSR1,msg_confirm);
 	pid = getpid();
 	id_str = ft_itoa(pid);
 	msg(av[1], id_str);
 	if(ac == 3)
-	{
 		msg(av[1],av[2]);
-		signal(SIGUSR1,msg_confirm);
-	}
 	else
 		ft_putstr("Error\n");
-	while(1);
 	return (0);
 }
