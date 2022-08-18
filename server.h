@@ -6,7 +6,7 @@
 /*   By: kadjane <kadjane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:21:00 by kadjane           #+#    #+#             */
-/*   Updated: 2022/08/16 17:52:03 by kadjane          ###   ########.fr       */
+/*   Updated: 2022/08/18 17:08:58 by kadjane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include<signal.h>
+
 
 void	ft_putstr(char *str);
 char	*ft_itoa(int n);

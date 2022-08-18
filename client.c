@@ -6,7 +6,7 @@
 /*   By: kadjane <kadjane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 12:59:16 by kadjane           #+#    #+#             */
-/*   Updated: 2022/08/16 20:21:22 by kadjane          ###   ########.fr       */
+/*   Updated: 2022/08/18 18:08:08 by kadjane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,39 @@ void	convert_binary(int pid,char c)
 	{
 		bit = (c >> i) & 1;
 		client(pid,bit);
-		usleep(500);
+		usleep(70);
 	}
-	
+}
+void	msg(char *pid,char *av)
+{
+	int	i;
+
+	i = -1;
+	while(av[++i])
+		convert_binary(ft_atoi(pid),av[i]);
+	convert_binary(ft_atoi(pid),0);
+}
+
+void	msg_confirm(int signo)
+{
+	ft_putstr("message well received");
 }
 
 int main(int ac,char **av)
 {
-	int	i;
-	
-	i = -1;
-	// printf("%d\n",(av[2][2]));
-	// write(1,av[2], 5);
-	while(av[2][++i])
-		convert_binary(ft_atoi(av[1]),av[2][i]);
-	convert_binary(ft_atoi(av[1]),0);
+	pid_t	pid;
+	char 	*id_str;
 
+	pid = getpid();
+	id_str = ft_itoa(pid);
+	msg(av[1], id_str);
+	if(ac == 3)
+	{
+		msg(av[1],av[2]);
+		signal(SIGUSR1,msg_confirm);
+	}
+	else
+		ft_putstr("Error\n");
+	while(1);
+	return (0);
 }

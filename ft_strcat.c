@@ -6,7 +6,7 @@
 /*   By: kadjane <kadjane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 10:07:37 by kadjane           #+#    #+#             */
-/*   Updated: 2022/08/16 19:49:24 by kadjane          ###   ########.fr       */
+/*   Updated: 2022/08/17 19:25:54 by kadjane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,4 @@ void	ft_strcat(char **msg,char src)
 		str = NULL;
 	}
 	*msg = string;
-	// return (string);
 }

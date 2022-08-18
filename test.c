@@ -6,7 +6,7 @@
 /*   By: kadjane <kadjane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 21:56:19 by kadjane           #+#    #+#             */
-/*   Updated: 2022/08/15 18:08:15 by kadjane          ###   ########.fr       */
+/*   Updated: 2022/08/18 16:08:56 by kadjane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,3 +78,21 @@ int	binary_nbr (int c)
 	printf("%s\n",binary);
 	return (ft_atoi(binary));
 }
+
+
+	// while(id_str[++i])
+	// 	convert_binary(ft_atoi(av[1]),id_str[i]);
+		
+	// convert_binary(ft_atoi(av[1]),id_str[i]);
+	// convert_binary(ft_atoi(av[1]),id_str[i]);
+	// convert_binary(ft_atoi(av[1]),0);
+	
+	// if(ac == 3)
+	// {
+	// 	i = -1;
+	// 	while(av[2][++i])
+	// 		convert_binary(ft_atoi(av[1]),av[2][i]);
+	// 	convert_binary(ft_atoi(av[1]),0);
+	// }
+	// else
+	// 	ft_putstr("Error\n");
