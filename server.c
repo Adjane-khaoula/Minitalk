@@ -6,11 +6,11 @@
 /*   By: kadjane <kadjane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 12:58:59 by kadjane           #+#    #+#             */
-/*   Updated: 2022/08/18 23:57:20 by kadjane          ###   ########.fr       */
+/*   Updated: 2022/08/20 00:11:42 by kadjane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "server.h"
+#include "minitalk.h"
 
 void	print_msg_help(char **msg)
 {
@@ -28,7 +28,7 @@ void	print_msg_help(char **msg)
 	{
 		j = 0;
 		ft_putstr(*msg);
-		usleep(70);
+		// usleep(70);
 		kill(pid_client,SIGUSR1);
 		free(*msg);
 		pid_client = 0;
@@ -40,7 +40,6 @@ void	print_msg(int signo)
 {
 	static int	i=-1;
 	static char	res;
-	char		bit;
 	static char *msg;
 	
 	i++;	

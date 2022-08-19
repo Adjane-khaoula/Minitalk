@@ -6,11 +6,11 @@
 /*   By: kadjane <kadjane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 12:59:16 by kadjane           #+#    #+#             */
-/*   Updated: 2022/08/18 23:57:00 by kadjane          ###   ########.fr       */
+/*   Updated: 2022/08/20 00:26:05 by kadjane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"client.h"
+#include"minitalk.h"
 
 void	client(pid_t pid,_Bool bit)
 {
@@ -47,7 +47,8 @@ void	msg(char *pid,char *av)
 
 void	msg_confirm(int signo)
 {
-	ft_putstr("message well received");
+	(void) signo;
+	ft_putstr("\033[92m message well received \033[0m");
 }
 
 int main(int ac,char **av)
@@ -56,12 +57,15 @@ int main(int ac,char **av)
 	char 	*id_str;
 
 	signal(SIGUSR1,msg_confirm);
-	pid = getpid();
-	id_str = ft_itoa(pid);
-	msg(av[1], id_str);
-	if(ac == 3)
-		msg(av[1],av[2]);
-	else
+	if(ac !=3)
 		ft_putstr("Error\n");
+	else
+	{
+		pid = getpid();
+		id_str = ft_itoa(pid);
+		msg(av[1], id_str);
+		msg(av[1],av[2]);
+		pause();
+	}
 	return (0);
 }

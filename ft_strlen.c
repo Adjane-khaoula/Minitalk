@@ -6,18 +6,18 @@
 /*   By: kadjane <kadjane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 17:46:11 by kadjane           #+#    #+#             */
-/*   Updated: 2022/08/16 15:52:28 by kadjane          ###   ########.fr       */
+/*   Updated: 2022/08/19 23:22:43 by kadjane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "client.h"
+#include "minitalk.h"
 
-// int	ft_strlen(const char *str)
-// {
-// 	int	i;
+int	ft_strlen(const char *str)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (str[i])
-// 		i++;
-// 	return (i);
-// }
+	i = 0;
+	while (str && str[i])
+		i++;
+	return (i);
+}
