@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadjane <kadjane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/09 12:58:59 by kadjane           #+#    #+#             */
-/*   Updated: 2022/08/22 19:10:29 by kadjane          ###   ########.fr       */
+/*   Created: 2022/08/22 18:54:05 by kadjane           #+#    #+#             */
+/*   Updated: 2022/08/22 22:36:13 by kadjane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,22 @@
 
 void	print_msg_help(char **msg)
 {
-	ft_putstr(*msg);
-	free(*msg);
-	*msg = NULL;
+	static int	pid_client;
+
+	if (pid_client == 0)
+	{
+		pid_client = ft_atoi(*msg);
+		free (*msg);
+		*msg = NULL;
+	}
+	else
+	{
+		ft_putstr(*msg);
+		kill(pid_client, SIGUSR1);
+		free(*msg);
+		*msg = NULL;
+		pid_client = 0;
+	}
 }
 
 void	print_msg(int signo)

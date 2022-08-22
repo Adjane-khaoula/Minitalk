@@ -6,7 +6,7 @@
 /*   By: kadjane <kadjane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 10:07:37 by kadjane           #+#    #+#             */
-/*   Updated: 2022/08/20 03:05:56 by kadjane          ###   ########.fr       */
+/*   Updated: 2022/08/22 17:07:12 by kadjane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_strcat(char **msg, char src)
 	char	*string;
 	char	*str;
 
-	i = -1 ;
+	i = -1;
 	str = *msg;
 	string = malloc(ft_strlen(*msg) + 2);
 	if (!string)

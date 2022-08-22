@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadjane <kadjane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/09 12:59:16 by kadjane           #+#    #+#             */
-/*   Updated: 2022/08/22 19:09:42 by kadjane          ###   ########.fr       */
+/*   Created: 2022/08/22 18:53:24 by kadjane           #+#    #+#             */
+/*   Updated: 2022/08/22 22:20:43 by kadjane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	convert_binary(int pid, char c)
 	{
 		bit = (c >> i) & 1;
 		client(pid, bit);
-		usleep(70);
+		usleep(100);
 	}
 }
 
@@ -45,11 +45,28 @@ void	msg(char *pid, char *av)
 	convert_binary(ft_atoi(pid), 0);
 }
 
+void	msg_confirm(int signo)
+{
+	(void) signo;
+	ft_putstr("\033[92m message well received \033[0m");
+	exit(0);
+}
+
 int	main(int ac, char **av)
 {
+	pid_t	pid;
+	char	*id_str;
+
+	signal(SIGUSR1, msg_confirm);
 	if (ac != 3 || ft_atoi(av[1]) <= 0)
 		ft_putstr("Error\n");
 	else
+	{
+		pid = getpid();
+		id_str = ft_itoa(pid);
+		msg(av[1], id_str);
 		msg(av[1], av[2]);
+		pause();
+	}
 	return (0);
 }
